@@ -32,6 +32,13 @@
     <link rel="stylesheet" crossorigin href="/assets/main-DsmMGX6k.css">
   </head>
   <body>
+    <script>
+      const redirectPath = sessionStorage.redirect;
+      if (redirectPath) {
+        sessionStorage.removeItem('redirect');
+        history.replaceState(null, '', redirectPath);
+      }
+    </script>
     <div id="root"></div>
   </body>
 </html>
