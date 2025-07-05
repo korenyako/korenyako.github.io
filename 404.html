@@ -5,19 +5,14 @@
     <title>Redirecting…</title>
     <meta name="robots" content="noindex" />
     <script>
-      const rawPath = location.pathname;
-      let path = rawPath.replace(/^\/+/, "").replace(/\.html$/, "");
-
-      // Если мы на /404 или /404.html — ничего не делать
-      if (path === "404") {
-        console.log("🚫 Not redirecting from /404.html");
-      } else {
-        const redirectPath = "/" + path + location.search + location.hash;
-        window.location.replace(redirectPath);
-      }
+      let path = location.pathname.replace(/^\/+/, "");
+      // Удаляем .html в конце, если оно есть
+      path = path.replace(/\.html$/, "");
+      const redirectPath = "/" + path + location.search + location.hash;
+      window.location.replace(redirectPath);
     </script>
   </head>
   <body>
     Redirecting…
   </body>
-</html>
+</html> 
