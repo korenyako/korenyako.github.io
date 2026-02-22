@@ -45,7 +45,12 @@ const ProjectContent = ({ content }: ProjectContentProps) => {
     if (prevItem?.type === 'heading') {
       return 'mt-4';
     }
-    
+
+    // Tighter spacing between consecutive text blocks
+    if ((currentItem.type === 'text' || currentItem.type === 'large-text') && (prevItem?.type === 'text' || prevItem?.type === 'large-text')) {
+      return 'mt-6';
+    }
+
     // Default spacing for other elements
     return 'mt-16';
   };
@@ -57,9 +62,10 @@ const ProjectContent = ({ content }: ProjectContentProps) => {
       case 'text':
         return (
           <div key={index} className={`max-w-3xl mx-auto ${spacing}`}>
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              {item.content}
-            </p>
+            <p
+              className="text-lg md:text-xl text-muted-foreground leading-relaxed [&_strong]:text-foreground [&_strong]:font-medium"
+              dangerouslySetInnerHTML={{ __html: item.content || '' }}
+            />
           </div>
         );
       

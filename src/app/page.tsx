@@ -22,7 +22,7 @@ export default function HomePage() {
           <div className="mb-20">
             <AnimatedHeadline />
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed">
-              15+ years in digital. Enterprise platforms, mobile apps, product websites — design and code.
+              I design and build digital products — enterprise platforms, mobile apps, websites.
             </p>
           </div>
 

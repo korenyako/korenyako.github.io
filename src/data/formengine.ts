@@ -4,12 +4,13 @@ export const formengine: Project = {
   id: 'formengine',
   title: 'FormEngine',
   subtitle: 'Product website for open-source React form builder — designed and coded from scratch',
-  cardSubtitle: 'Product website · End-to-end · Design & code',
-  role: 'Designer & Developer',
-  timeline: '2 months',
+  cardSubtitle: 'Product website · Design and code by one person',
+  role: 'Designer & Developer (solo)',
+  timeline: '2024 — ongoing',
   industry: 'Developer Tools',
   type: 'Product Website',
   deliverables: 'UI/UX Design, Front-end Code (React + Vite)',
+  scope: 'Design + front-end code',
   tags: ['react', 'developer tools', 'open-source', 'design', 'code'],
   hero: '/images/projects/formengine/1.gif',
   year: '2024',
@@ -22,17 +23,32 @@ export const formengine: Project = {
     {
       type: 'heading',
       level: 2,
-      content: 'Process & Solution'
+      content: 'The challenge'
     },
     {
-      type: 'list',
-      items: [
-        'Designed UI concept in Figma: navigation, components, illustrations',
-        'Built the entire front-end in React + Vite + Tailwind CSS',
-        'Interactive elements: live code snippets, syntax highlighting, copy function',
-        'GitHub API integration: real-time star count, version, contributors',
-        'Responsive design for all screen sizes'
-      ]
+      type: 'text',
+      content: 'FormEngine is an open-source React form builder used by Bosch, Philips, Dell, and Novartis. The team needed a product website that matched the quality of their enterprise clients. They were looking for a designer — I proposed to deliver both design and a working site, no developer needed.'
+    },
+    {
+      type: 'heading',
+      level: 2,
+      content: 'What I built'
+    },
+    {
+      type: 'text',
+      content: '<strong>Full website from Figma to production, solo.</strong> Designed the UI concept, then built the entire front-end myself. No handoff, no coordination overhead, no "it looks different from the mockup" problems.'
+    },
+    {
+      type: 'text',
+      content: '<strong>Live component demos embedded in the site.</strong> FormEngine components render directly on the page — visitors can interact with the actual library, not static screenshots. This required integrating the library into the site\'s build pipeline.'
+    },
+    {
+      type: 'text',
+      content: '<strong>Real-time GitHub data.</strong> Star count, version, and contributors pulled from the GitHub API and displayed live. Stargazers section updates automatically.'
+    },
+    {
+      type: 'text',
+      content: '<strong>Migrated from React + Vite to Next.js</strong> for better SEO and server-side rendering.'
     },
     { type: 'image-full', src: '/images/projects/formengine/1.gif', alt: 'FormEngine homepage', link: 'https://formengine.io/' },
     { type: 'image-full', src: '/images/projects/formengine/2.gif', alt: 'FormEngine pricing', link: 'https://formengine.io/react-form-builder-library/pricing/' },
@@ -44,7 +60,7 @@ export const formengine: Project = {
     },
     {
       type: 'large-text',
-      content: 'Live website: <a href="https://formengine.io" target="_blank" rel="noopener noreferrer">formengine.io</a>. Solo project — design and code by one person.'
+      content: 'Designed, built, deployed, and later migrated — one person, end to end.'
     }
   ]
 };

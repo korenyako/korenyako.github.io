@@ -7,7 +7,7 @@ import HyundaiLogo from './icons/HyundaiLogo';
 import AbbottLogo from './icons/AbbottLogo';
 import MazdaLogo from './icons/MazdaLogo';
 import KotanyiLogo from './icons/KotanyiLogo';
-import SplytLogo from './icons/SplytLogo';
+
 import XeroxLogo from './icons/XeroxLogo';
 
 const logos = [
@@ -20,7 +20,7 @@ const logos = [
   { Logo: AbbottLogo, className: "h-8 w-auto" },
   { Logo: MazdaLogo, className: "h-6 w-auto" },
   { Logo: KotanyiLogo, className: "h-10 w-auto" },
-  { Logo: SplytLogo, className: "h-10 w-auto" },
+
   { Logo: XeroxLogo, className: "h-8 w-auto" },
 ];
 

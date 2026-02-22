@@ -32,7 +32,7 @@ export default function PortfolioPage() {
               {archivedProjects.map((project) => (
                 <Link href={`/portfolio/${project.id}`} key={project.id} className="block animate-fade-in">
                   <h3 className="text-xl md:text-2xl font-medium text-foreground">{project.title}</h3>
-                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{project.subtitle}</p>
+                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">{project.cardSubtitle || project.subtitle}</p>
                 </Link>
               ))}
             </div>

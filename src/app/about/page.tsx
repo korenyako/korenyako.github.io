@@ -29,7 +29,7 @@ export default function AboutPage() {
                       I focus on making things clear — finding structure in chaos, improving user flows, and crafting experiences that feel effortless.
                     </p>
                     <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed">
-                      I often join early-stage teams as the first (or only) designer, moving between strategy and execution. On some projects I also handle front-end code.
+                      I often join early-stage teams as the first (or only) designer, moving between strategy and execution. On some projects I also build the front-end — React, Next.js, working code, not just mockups.
                     </p>
                     <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed">
                       Based in Turin. When not designing, I&apos;m in the Alps or on a road trip with family.

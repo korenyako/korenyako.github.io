@@ -145,15 +145,6 @@ const Layout = ({ children, backgroundColor }: LayoutProps) => {
             &copy; {new Date().getFullYear()} Anton Korenyako
             <br />
             Made with Tailwind. Built with Next.js. Deployed on GitHub Pages.
-            {' · '}
-            <a
-              href="https://github.com/korenyako/korenyako.github.io"
-              className="hover:text-foreground transition-colors duration-200"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Source on GitHub
-            </a>
           </div>
         </div>
       </footer>

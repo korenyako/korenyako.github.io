@@ -90,10 +90,12 @@ const ProjectHeader = ({ title, subtitle, highlights, role, scope, timeline, ind
               <p className="text-lg md:text-xl text-muted-foreground">{highlights}</p>
             </div>
           )}
-          <div>
-            <h3 className="text-base md:text-lg font-medium text-foreground mb-2">Deliverables</h3>
-            <p className="text-lg md:text-xl text-muted-foreground">{deliverables}</p>
-          </div>
+          {!scope && (
+            <div>
+              <h3 className="text-base md:text-lg font-medium text-foreground mb-2">Deliverables</h3>
+              <p className="text-lg md:text-xl text-muted-foreground">{deliverables}</p>
+            </div>
+          )}
         </div>
       </div>
       

@@ -4,6 +4,7 @@ export const kfc: Project = {
   id: 'kfc',
   title: 'KFC',
   subtitle: 'Website redesign concept for KFC Russia — personalization based on real user data',
+  cardSubtitle: 'Website redesign concept · Scholz & Friends',
   industry: 'Food, QSR',
   type: `Corporate Website, Personalization Platform`,
   deliverables: `UX Research, Personas, User Flows, Wireframes, Mockups`,

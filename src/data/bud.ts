@@ -4,6 +4,7 @@ export const bud: Project = {
   id: 'bud',
   title: 'Bud',
   subtitle: 'AR app concept for merchandisers — pilot project for AB InBev',
+  cardSubtitle: 'AR merchandising app · Pilot for AB InBev · Scholz & Friends',
   industry: 'Retail',
   type: 'Mobile App',
   deliverables: 'UX/UI Design, Prototyping, AR Development',
