@@ -59,7 +59,7 @@ const Layout = ({ children, backgroundColor }: LayoutProps) => {
               </Link>
             ))}
             <a
-              href="/documents/Anton Korenyako - Resume.pdf"
+              href="/documents/Anton-Korenyako-Product-Designer-Resume.pdf"
               className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
               target="_blank"
               rel="noopener noreferrer"
@@ -126,7 +126,7 @@ const Layout = ({ children, backgroundColor }: LayoutProps) => {
             Contact
           </Link>
           <a
-            href="/documents/Anton Korenyako - Resume.pdf"
+            href="/documents/Anton-Korenyako-Product-Designer-Resume.pdf"
             className="text-2xl font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 focus:outline-none"
             target="_blank"
             rel="noopener noreferrer"
