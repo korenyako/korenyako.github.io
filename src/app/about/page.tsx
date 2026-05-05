@@ -23,13 +23,16 @@ export default function AboutPage() {
 
                   <div className="space-y-6 text-muted-foreground leading-relaxed">
                     <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed">
-                      I&apos;m a product designer with 15+ years in digital. Worked with KFC, PepsiCo, Bud at Scholz &amp; Friends. Led design for an HR platform with 250K daily users (iF Design Award 2022). Recently designed an enterprise cloud platform solo over a year.
+                      I&apos;m a product designer who builds. Not just Figma mockups — working code in React and Next.js.
                     </p>
                     <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed">
-                      I focus on making things clear — finding structure in chaos, improving user flows, and crafting experiences that feel effortless.
+                      Led design for an enterprise HR platform with 250K daily users (iF Design Award 2022). Designed a cloud infrastructure platform solo from zero to launched MVP in one year. Worked with global brands (De Fonseca, METRO, PepsiCo, Bud).
                     </p>
                     <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed">
-                      I often join early-stage teams as the first (or only) designer, moving between strategy and execution. On some projects I also build the front-end — React, Next.js, working code, not just mockups.
+                      I often join early-stage teams as the first (or only) designer, moving between strategy and execution.
+                    </p>
+                    <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed">
+                      Build personal products from scratch: desktop apps, data platforms.
                     </p>
                     <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed">
                       Based in Turin. When not designing, I&apos;m in the Alps or on a road trip with family.
