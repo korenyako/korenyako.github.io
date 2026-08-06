@@ -26,7 +26,7 @@ export default function AboutPage() {
                       I&apos;m a product designer who builds. Not just Figma mockups — working code in React and Next.js.
                     </p>
                     <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed">
-                      Led design for an enterprise HR platform with 250K daily users (iF Design Award 2022). Designed a cloud infrastructure platform solo from zero to launched MVP in one year. Worked with global brands (De Fonseca, METRO, PepsiCo, Bud).
+                      Before that: designed for an enterprise HR platform with 250K daily users that won an iF Design Award, was the solo designer on a cloud infrastructure platform from zero to MVP in a year, worked with METRO, PepsiCo, De Fonseca, Bud.
                     </p>
                     <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl leading-relaxed">
                       I often join early-stage teams as the first (or only) designer, moving between strategy and execution.
