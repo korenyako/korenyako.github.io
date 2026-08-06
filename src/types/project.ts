@@ -17,6 +17,9 @@ export interface ContentItem {
   link?: string;
 }
 
+/** Cards whose thumbnail is a rendered component instead of a file in public/. */
+export type ProjectCoverId = 'netok' | 'kotic';
+
 export interface Project {
   id: string;
   title: string;
@@ -31,10 +34,16 @@ export interface Project {
   deliverables: string;
   tags: string[];
   hero: string;
+  /** When set, the card renders this cover component; `hero` stays as the no-JS fallback. */
+  heroComponent?: ProjectCoverId;
   heroDetail?: string;
   awardLogo?: string;
   content: ContentItem[];
   year: string;
   externalLink?: string;
   awardLink?: string;
+  /** Card links straight out to the live product instead of to a case page. */
+  cardExternalLink?: string;
+  /** No case page and no live link yet — the card renders unclickable, with a label. */
+  inDevelopment?: boolean;
 }

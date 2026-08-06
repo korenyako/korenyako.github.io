@@ -39,7 +39,7 @@ export default function ProjectPage({ params }: PageProps) {
   const projectsToShow = filteredProjects.slice(0, 2);
 
   return (
-    <Layout backgroundColor="#FFFFFF">
+    <Layout>
       <div className="py-16 overflow-x-hidden w-full">
         <div className="max-w-[1440px] mx-auto px-4">
           <ProjectHeader

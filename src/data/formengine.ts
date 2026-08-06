@@ -4,7 +4,7 @@ export const formengine: Project = {
   id: 'formengine',
   title: 'FormEngine',
   subtitle: 'Product website for open-source React form builder — designed and coded from scratch',
-  cardSubtitle: 'Product website · Design and code by one person',
+  cardSubtitle: 'Design and front-end code for the website of a React form builder.',
   role: 'Designer & Developer (solo)',
   timeline: '2024 — ongoing',
   industry: 'Developer Tools',

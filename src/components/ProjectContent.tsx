@@ -218,7 +218,21 @@ const ProjectContent = ({ content }: ProjectContentProps) => {
             <img src={item.src} alt={item.alt} className="w-full h-auto rounded-2xl" />
           </div>
         );
-      
+
+      // Two images in a row that together — gap included — span the text column,
+      // unlike `image-duo`, which runs the full container width and crops square.
+      // Heights are left natural, so give it a pair with matching proportions.
+      case 'image-duo-text-width':
+        return (
+          <div
+            key={index}
+            className={`max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 ${spacing}`}
+          >
+            <img src={item.src1} alt={item.alt1} className="w-full h-auto rounded-2xl" />
+            <img src={item.src2} alt={item.alt2} className="w-full h-auto rounded-2xl" />
+          </div>
+        );
+
       case 'custom':
         if (item.component === 'PulseSlider' && item.props?.images) {
           return (

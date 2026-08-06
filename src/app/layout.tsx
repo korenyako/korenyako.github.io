@@ -1,25 +1,26 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
+import AnimationObserver from '@/components/AnimationObserver';
 import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Anton Korenyako – Product Designer & Art Director',
   description:
-    'Designing clear, intuitive digital experiences for startups and global teams. From early MVPs to full-scale platforms.',
+    'Product designer in Turin. I design enterprise platforms, mobile apps and websites.',
   authors: [{ name: 'Anton Korenyako' }],
   openGraph: {
     type: 'website',
     url: 'https://korenyako.github.io/',
     title: 'Anton Korenyako – Product Designer & Art Director',
     description:
-      'Designing clear, intuitive digital experiences for startups and global teams. From early MVPs to full-scale platforms.',
+      'Product designer in Turin. I design enterprise platforms, mobile apps and websites.',
     images: [{ url: 'https://korenyako.github.io/og-image.jpg' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Anton Korenyako – Product Designer & Art Director',
     description:
-      'Designing clear, intuitive digital experiences for startups and global teams. From early MVPs to full-scale platforms.',
+      'Product designer in Turin. I design enterprise platforms, mobile apps and websites.',
     images: ['https://korenyako.github.io/og-image.jpg'],
   },
   icons: {
@@ -58,6 +59,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased">
         {children}
+        <AnimationObserver />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-PDXLNPBHY0"
           strategy="afterInteractive"

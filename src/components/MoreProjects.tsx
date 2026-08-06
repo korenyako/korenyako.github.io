@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Project } from '@/types/project';
+import ProjectCardMedia from './ProjectCardMedia';
 
 interface MoreProjectsProps {
   projectsToShow: Project[];
@@ -22,24 +23,11 @@ const MoreProjects = ({ projectsToShow }: MoreProjectsProps) => {
         {projectsToShow.map((project) => (
           <Link key={project.id} href={`/portfolio/${project.id}`} className="block group">
             <div className="space-y-6">
-              <div className="aspect-[4/3] overflow-hidden bg-neutral-100 rounded-3xl">
-                {project.hero.endsWith('.mp4') ? (
-                  <video
-                    src={project.hero}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-                  />
-                ) : (
-                  <img
-                    src={project.hero}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
-                  />
-                )}
-              </div>
+              <ProjectCardMedia
+                hero={project.hero}
+                heroComponent={project.heroComponent}
+                alt={project.title}
+              />
 
               <div className="space-y-2">
                 <h3 className="text-xl md:text-2xl font-medium text-foreground group-hover:text-muted-foreground transition-colors duration-200">

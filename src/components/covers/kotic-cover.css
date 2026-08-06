@@ -1,0 +1,154 @@
+/*
+ * Kotic cover — keyframes and timing. Same architecture as netok-cover.css;
+ * see that file for the reasoning behind each choice. In short:
+ *
+ *  - rules outside the @media block describe the FINAL, assembled logo, so with
+ *    JS off the cover renders complete instead of blank;
+ *  - inside `@media (scripting: enabled)` it is merely hidden until the shared
+ *    AnimationObserver adds `.in-view`;
+ *  - fill-mode is `backwards`, never `forwards`, so no transform survives the
+ *    animation. A lingering transform pins the SVG to a composited layer that
+ *    Chrome rasterised once, and the resting logo renders visibly soft. The
+ *    source mockup used `forwards` and would have hit exactly that.
+ */
+
+.kotic-cover {
+  /* ---------------------------------------------------------------- tuning */
+  /* Every delay/duration/easing lives here. Total run: ~2.45s to assembled. */
+
+  /* 1. The slab draws itself as an outline. */
+  --kotic-draw-delay: 0.2s;
+  --kotic-draw-duration: 1.1s;
+
+  /* 2. Then floods with colour, starting just before the outline closes. */
+  --kotic-fill-delay: 1.1s;
+  --kotic-fill-duration: 0.45s;
+
+  /* 3. Letters stamp in, left to right, each overshooting past its size. */
+  --kotic-letter-delay: 1.45s;
+  --kotic-letter-stagger: 0.17s;
+  --kotic-letter-duration: 0.32s;
+
+  /* 4. Loop. AnimationObserver reads --animate-cycle and re-triggers on that
+        period. Keep it longer than the build (~2.45s) plus the hold you want.
+        Hold = cycle - build - fade, so 5.4 - 2.45 - 0.4 = ~2.55s. */
+  --animate-cycle: 5.4s;
+  --kotic-fade-duration: 0.4s;
+
+  /* Shared easings. */
+  --kotic-ease-draw: cubic-bezier(0.4, 0, 0.2, 1); /* the outline: even, unhurried */
+  --kotic-ease-stamp: cubic-bezier(0.34, 1.56, 0.64, 1); /* letters: land hard, settle */
+
+  /* Presentation. */
+  --kotic-bg: #0d0d0d; /* the app's own splash colour */
+  --kotic-logo-width: 66%; /* logo width relative to the card */
+  /* ------------------------------------------------------------ end tuning */
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--kotic-bg);
+}
+
+.kotic-cover__svg {
+  width: var(--kotic-logo-width);
+  height: auto;
+}
+
+/* Scale on an SVG child otherwise resolves against the viewBox corner. */
+.kotic-letter {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* pathLength="1" normalises the outline to length 1, so one dash covers it. */
+.kotic-slab {
+  stroke-dasharray: 1;
+}
+
+@media (scripting: enabled) {
+  /* Hidden until the observer says go. Plain visibility — no transform, so
+     nothing here can leave a composited layer behind. */
+  .kotic-cover:not(.in-view) .kotic-cover__svg {
+    visibility: hidden;
+  }
+
+  .kotic-cover.in-view .kotic-slab {
+    animation: kotic-draw var(--kotic-draw-duration) var(--kotic-ease-draw)
+        var(--kotic-draw-delay) backwards,
+      kotic-fill var(--kotic-fill-duration) ease var(--kotic-fill-delay) backwards;
+  }
+
+  .kotic-cover.in-view .kotic-letter {
+    animation: kotic-stamp var(--kotic-letter-duration) var(--kotic-ease-stamp)
+      calc(var(--kotic-letter-delay) + var(--kotic-i) * var(--kotic-letter-stagger)) backwards;
+  }
+
+  /* Closes the loop: dissolve, then the observer strips `.in-view` and re-adds
+     it, restarting everything from zero. */
+  .kotic-cover.in-view .kotic-cover__svg {
+    animation: kotic-dissolve var(--kotic-fade-duration) var(--kotic-ease-draw)
+      calc(var(--animate-cycle) - var(--kotic-fade-duration)) forwards;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Keyframes.
+   -------------------------------------------------------------------------- */
+
+@keyframes kotic-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes kotic-fill {
+  from {
+    fill-opacity: 0;
+  }
+  to {
+    fill-opacity: 1;
+  }
+}
+
+@keyframes kotic-stamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.94);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes kotic-dissolve {
+  to {
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion — the base rules are already the assembled logo, so
+   cancelling the animations and un-hiding is the whole job.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .kotic-cover .kotic-cover__svg {
+    visibility: visible !important;
+    animation: none !important; /* no dissolve, so no loop either */
+  }
+  .kotic-cover .kotic-slab,
+  .kotic-cover .kotic-letter {
+    animation: none !important;
+  }
+}

@@ -50,16 +50,17 @@ const Testimonials = () => {
           {testimonials.map((t, idx) => (
             <div
               key={idx}
-              className="flex flex-col h-full bg-white rounded-3xl transition-shadow duration-200 p-8 justify-between"
+              className="flex flex-col h-full bg-white rounded-3xl p-8 justify-between"
             >
               <div className="flex-1">
-                <svg className="w-8 h-8 text-[#171717] mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M7.17 6.17A7 7 0 0 0 3 13v1a4 4 0 0 0 4 4h.01A2.99 2.99 0 0 0 10 15v-2A3 3 0 0 0 7 10H6.97a5 5 0 0 1 2.2-3.83zM17.17 6.17A7 7 0 0 0 13 13v1a4 4 0 0 0 4 4h.01A2.99 2.99 0 0 0 20 15v-2a3 3 0 0 0-3-3h-.03a5 5 0 0 1 2.2-3.83z"/></svg>
+                <svg className="w-8 h-8 text-foreground mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M7.17 6.17A7 7 0 0 0 3 13v1a4 4 0 0 0 4 4h.01A2.99 2.99 0 0 0 10 15v-2A3 3 0 0 0 7 10H6.97a5 5 0 0 1 2.2-3.83zM17.17 6.17A7 7 0 0 0 13 13v1a4 4 0 0 0 4 4h.01A2.99 2.99 0 0 0 20 15v-2a3 3 0 0 0-3-3h-.03a5 5 0 0 1 2.2-3.83z"/></svg>
                 <p className="text-xl md:text-2xl text-foreground font-normal leading-relaxed mb-8">{t.quote}</p>
               </div>
               <div className="flex items-center mt-auto">
                 <div>
-                  <div className="text-base font-semibold text-foreground">{t.name}</div>
-                  <div className="text-sm text-muted-foreground">{t.title}</div>
+                  <div className="text-base md:text-lg font-medium text-foreground">{t.name}</div>
+                  {/* Same class as the project-card caption on /portfolio. */}
+                  <div className="text-base md:text-lg text-muted-foreground leading-relaxed">{t.title}</div>
                 </div>
               </div>
             </div>

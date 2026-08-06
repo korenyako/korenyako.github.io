@@ -4,7 +4,8 @@ export const cloud: Project = {
   id: 'cloud',
   title: 'Ncloud',
   subtitle: 'Designed an enterprise cloud platform from zero to production as a solo designer.',
-  cardSubtitle: 'Cloud infrastructure platform · Solo designer · 50+ screens from zero',
+  cardSubtitle:
+    'Product design for an enterprise cloud infrastructure platform, taken from first sketches to a working MVP.',
   role: 'Solo Product Designer',
   timeline: '12 months, from zero to launch',
   industry: 'Cloud Infrastructure',

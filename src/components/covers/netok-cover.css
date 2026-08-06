@@ -1,0 +1,240 @@
+/*
+ * Netok cover — keyframes and timing.
+ *
+ * Kept as a plain colocated stylesheet rather than added to tailwind.config.ts:
+ * these ~4 keyframes are single-use, they read their own custom properties
+ * (`from`/`to` interpolate var()s, which a Tailwind keyframe object cannot
+ * express as cleanly), and they need descendant selectors gated on `.in-view`.
+ * Putting them in the Tailwind config would grow the shared config for
+ * something no other component can reuse.
+ *
+ * PROGRESSIVE ENHANCEMENT
+ * The rules outside the @media block below are the FINAL, assembled logo, so
+ * with JS switched off the cover renders as a static, complete logo instead of
+ * an empty dark box. Inside `@media (scripting: enabled)` the logo is merely
+ * hidden until AnimationObserver adds `.in-view`.
+ *
+ * WHY fill-mode IS `backwards`, NOT `both`
+ * Every start state comes from the keyframes' own `from`, held through the
+ * delay by `backwards`. Nothing declares a resting transform. That matters for
+ * sharpness: a transform left on an SVG group after the animation finishes
+ * keeps the subtree on a composited layer that Chrome rasterised once, and the
+ * final frame renders visibly soft. Letting the transform fall away on
+ * completion drops the layer and the logo paints crisp (measured: ~10% fewer
+ * half-tone edge pixels, and obvious side by side). It also means the start
+ * states are written once, in the keyframes, instead of twice.
+ *
+ * Why the media query rather than a `.js` class set by an inline script: React
+ * strips classes added to <html> before hydration when it reconciles the
+ * document element, so that flag does not survive on an App Router page (this
+ * was measured, not assumed). `scripting` is CSS-only and nothing can undo it.
+ * Browsers without it (pre-2023) simply get the static logo — the same graceful
+ * fallback as JS being disabled.
+ */
+
+.netok-cover {
+  /* ---------------------------------------------------------------- tuning */
+  /* Every delay/duration/easing lives here. Total run: ~2.6s to assembled.
+     Steps 1-3 build the mark inside the green disc; they are deliberately the
+     slow, unhurried part. Steps 4-5 stay brisk. */
+
+  /* 1. Green disc grows from nothing, overshoots, settles. */
+  --netok-disc-delay: 0s;
+  --netok-disc-duration: 0.75s;
+
+  /* 2. Nodes pop in one by one: bottom-left, top-left, bottom-right, top-right. */
+  --netok-nodes-delay: 0.36s;
+  --netok-nodes-stagger: 0.1s; /* gap between consecutive nodes */
+  --netok-nodes-duration: 0.45s;
+
+  /* 3. Edges draw in sequence. Separate delays because the diagonal is 1.41x
+        longer geometrically and needs longer to draw at the same apparent speed. */
+  --netok-edge-1-delay: 0.8s; /* left stem, bottom-left -> top-left */
+  --netok-edge-2-delay: 1.22s; /* diagonal, top-left -> bottom-right */
+  --netok-edge-3-delay: 1.7s; /* right stem, bottom-right -> top-right */
+  --netok-edge-duration: 0.38s; /* the two stems */
+  --netok-edge-duration-diagonal: 0.5s; /* the diagonal */
+
+  /* 4. Mark shrinks out of the centre and slides left into lockup position. */
+  --netok-shift-delay: 2s;
+  --netok-shift-duration: 0.5s;
+  --netok-mark-offset: 87.5px; /* centre of the 235-wide box minus mark centre (117.5 - 30) */
+  --netok-mark-start-scale: 1.5; /* how much bigger the mark starts */
+
+  /* 5. Wordmark letters cascade left to right. */
+  --netok-word-delay: 2.16s;
+  --netok-word-stagger: 0.04s;
+  --netok-word-duration: 0.28s;
+  --netok-word-rise: 4px; /* SVG user units, not screen px — ~13% of letter height */
+
+  /* 6. Loop. The assembled logo holds, dissolves, and the cycle starts over.
+        AnimationObserver reads --animate-cycle (that generic name is the
+        contract between any cover and the observer) and re-triggers on exactly
+        that period. Keep it comfortably longer than the build — the last letter
+        lands at ~2.6s — or the logo will be cut off mid-assembly.
+        Hold time = cycle - build - fade, so 5.5 - 2.6 - 0.4 = ~2.5s. */
+  --animate-cycle: 5.5s;
+  --netok-fade-duration: 0.4s;
+
+  /* Shared easings. */
+  --netok-ease-overshoot: cubic-bezier(0.34, 1.56, 0.64, 1); /* grows past 1, settles back */
+  --netok-ease-draw: cubic-bezier(0.65, 0, 0.35, 1); /* strokes: ease in and out */
+  --netok-ease-glide: cubic-bezier(0.4, 0, 0.2, 1); /* the shift: one unbroken move */
+
+  /* Presentation. */
+  --netok-bg: #141414;
+  --netok-logo-width: 72%; /* logo width relative to the card */
+  /* ------------------------------------------------------------ end tuning */
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--netok-bg);
+}
+
+.netok-cover__svg {
+  width: var(--netok-logo-width);
+  height: auto;
+  overflow: visible;
+}
+
+/* Scale/translate on SVG children otherwise resolves against the viewBox
+   corner. fill-box + center makes each element transform about itself. */
+.netok-mark,
+.netok-disc,
+.netok-node,
+.netok-letter {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* pathLength="1" normalises every edge to length 1, so one dash covers it all. */
+.netok-edge {
+  stroke-dasharray: 1;
+}
+
+@media (scripting: enabled) {
+  /* Hidden until the observer says go. Plain visibility — no transform, so
+     nothing here can leave a composited layer behind. */
+  .netok-cover:not(.in-view) .netok-cover__svg {
+    visibility: hidden;
+  }
+
+  /* ------------------------------------------------------------------------
+     Playback — one pass, then every animated property falls back to the base
+     rules above, which already describe the assembled logo.
+     ------------------------------------------------------------------------ */
+
+  .netok-cover.in-view .netok-disc {
+    animation: netok-pop var(--netok-disc-duration) var(--netok-ease-overshoot)
+      var(--netok-disc-delay) backwards;
+  }
+
+  .netok-cover.in-view .netok-node {
+    animation: netok-pop var(--netok-nodes-duration) var(--netok-ease-overshoot)
+      calc(var(--netok-nodes-delay) + var(--netok-i) * var(--netok-nodes-stagger)) backwards;
+  }
+
+  .netok-cover.in-view .netok-edge {
+    animation: netok-draw var(--netok-edge-duration) var(--netok-ease-draw) backwards;
+  }
+  .netok-cover.in-view .netok-edge:nth-child(1) {
+    animation-delay: var(--netok-edge-1-delay);
+  }
+  .netok-cover.in-view .netok-edge:nth-child(2) {
+    animation-delay: var(--netok-edge-2-delay);
+    animation-duration: var(--netok-edge-duration-diagonal);
+  }
+  .netok-cover.in-view .netok-edge:nth-child(3) {
+    animation-delay: var(--netok-edge-3-delay);
+  }
+
+  .netok-cover.in-view .netok-mark {
+    animation: netok-settle var(--netok-shift-duration) var(--netok-ease-glide)
+      var(--netok-shift-delay) backwards;
+  }
+
+  .netok-cover.in-view .netok-letter {
+    animation: netok-letter-in var(--netok-word-duration) var(--netok-ease-glide)
+      calc(var(--netok-word-delay) + var(--netok-i) * var(--netok-word-stagger)) backwards;
+  }
+
+  /* Closes the loop: the whole logo dissolves at the end of the cycle, then the
+     observer strips `.in-view` and re-adds it, restarting everything from zero.
+     Opacity only — no scale here, so this cannot re-introduce the rasterisation
+     softness that a lingering transform caused. */
+  .netok-cover.in-view .netok-cover__svg {
+    animation: netok-dissolve var(--netok-fade-duration) var(--netok-ease-glide)
+      calc(var(--animate-cycle) - var(--netok-fade-duration)) forwards;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Keyframes — transform / opacity / stroke-dashoffset only.
+   -------------------------------------------------------------------------- */
+
+@keyframes netok-pop {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes netok-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes netok-settle {
+  from {
+    transform: translateX(var(--netok-mark-offset)) scale(var(--netok-mark-start-scale));
+  }
+  to {
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes netok-letter-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--netok-word-rise));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes netok-dissolve {
+  to {
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion — skip straight to the assembled logo.
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  /* The base rules are already the assembled logo, so cancelling the
+     animations and un-hiding is the whole job. */
+  .netok-cover .netok-cover__svg {
+    visibility: visible !important;
+    animation: none !important; /* no dissolve, so no loop either */
+  }
+  .netok-cover .netok-mark,
+  .netok-cover .netok-disc,
+  .netok-cover .netok-node,
+  .netok-cover .netok-edge,
+  .netok-cover .netok-letter {
+    animation: none !important;
+  }
+}

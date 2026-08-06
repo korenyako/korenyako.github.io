@@ -4,7 +4,8 @@ export const pulse: Project = {
   id: 'pulse',
   title: 'Pulse',
   subtitle: 'Designed evaluation campaigns and salary payments admin panels from scratch for Sberbank\'s enterprise HR platform.',
-  cardSubtitle: 'HR platform for 250K daily users (iF Design Award 2022)',
+  cardSubtitle:
+    "Product design for Pulse, Sberbank's HR platform used by 250,000 people every day.",
   role: 'Lead Product Designer (team of 3)',
   timeline: '10 months, 2022',
   industry: 'HR Tech',
@@ -76,7 +77,7 @@ export const pulse: Project = {
     },
     {
       type: 'large-text',
-      content: '2 admin panels shipped. Evaluation wizard became the standard pattern for complex setup flows across Pulse. The platform received <a href="https://ifdesign.com/en/winner-ranking/project/hr-platform-pulse/350985" target="_blank" rel="noopener noreferrer">iF Design Award 2022</a> — I contributed as part of the design team.'
+      content: '2 admin panels shipped. Evaluation wizard became the standard pattern for complex setup flows across Pulse. The Pulse platform received the <a href="https://ifdesign.com/en/winner-ranking/project/hr-platform-pulse/350985" target="_blank" rel="noopener noreferrer">iF Design Award 2022</a> — I was one of six design leads on a 25-designer team.'
     }
   ]
 }; 

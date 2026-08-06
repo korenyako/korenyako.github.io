@@ -4,7 +4,8 @@ export const hotroom: Project = {
   id: 'hotroom',
   title: 'HotRoom',
   subtitle: 'Designed a hotel booking app with an unconventional model — hourly stays, auction pricing, and reservation resale — from zero to shipped MVP.',
-  cardSubtitle: 'Hotel booking app · 3 booking types in one flow · Solo designer',
+  cardSubtitle:
+    'A hotel booking app that fits hourly, overnight and multi-day stays into a single flow.',
   role: 'Solo Product Designer',
   timeline: '5 months, from zero to launch',
   industry: 'Hospitality',

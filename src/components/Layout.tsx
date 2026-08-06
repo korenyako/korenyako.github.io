@@ -7,10 +7,9 @@ import { useState } from 'react';
 
 interface LayoutProps {
   children: React.ReactNode;
-  backgroundColor?: string;
 }
 
-const Layout = ({ children, backgroundColor }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   const scrollDirection = useScrollDirection();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -27,15 +26,11 @@ const Layout = ({ children, backgroundColor }: LayoutProps) => {
   ];
 
   return (
-    <div
-      className="min-h-screen bg-background"
-      style={backgroundColor ? { backgroundColor, '--background': backgroundColor } as React.CSSProperties : undefined}
-    >
+    <div className="min-h-screen bg-background">
       <header
         className={`fixed top-0 left-0 right-0 z-50 bg-background transition-transform duration-300 w-full ${
           scrollDirection === 'down' ? '-translate-y-full' : 'translate-y-0'
         }`}
-        style={backgroundColor ? { backgroundColor } : undefined}
       >
         <div className="max-w-[1440px] mx-auto px-4 py-4 w-full flex items-center justify-between">
           <Link

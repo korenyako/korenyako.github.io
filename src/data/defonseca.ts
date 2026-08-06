@@ -4,7 +4,8 @@ export const defonseca: Project = {
   id: 'defonseca',
   title: 'De Fonseca',
   subtitle: 'Launched and ran the entire digital operation for De Fonseca in Russia — from a multilingual e-commerce site to payments, logistics, and marketing. One-person digital department.',
-  cardSubtitle: 'Built e-commerce from zero for Italy\'s top slipper brand in Russia',
+  cardSubtitle:
+    "Multilingual e-commerce for De Fonseca, Italy's biggest home-slipper brand, launched in the Russian market.",
   role: 'One-person digital department',
   timeline: '3.5 years',
   industry: 'E-commerce',
@@ -51,9 +52,13 @@ export const defonseca: Project = {
       content: '<strong>Expanded to marketplaces</strong> (Ozon, Wildberries) — product listings, descriptions, cards.'
     },
     { type: 'image-full', src: '/images/projects/defonseca/figma.webp', alt: 'Figma Project Preview' },
-    { type: 'image-text-width', src: '/images/projects/defonseca/photo_13.jpg', alt: 'De Fonseca Photo 13' },
-    { type: 'image-text-width', src: '/images/projects/defonseca/photo_09.jpg', alt: 'De Fonseca Photo 9' },
-    { type: 'image-text-width', src: '/images/projects/defonseca/photo_15.jpg', alt: 'De Fonseca Photo 15' },
+    {
+      type: 'image-duo',
+      src1: '/images/projects/defonseca/photo_09.jpg',
+      alt1: 'De Fonseca Photo 9',
+      src2: '/images/projects/defonseca/photo_15.jpg',
+      alt2: 'De Fonseca Photo 15',
+    },
     {
       type: 'heading',
       level: 2,
