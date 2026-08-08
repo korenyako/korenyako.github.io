@@ -10,7 +10,7 @@ export const kotic: Project = {
   subtitle:
     'A combat sports encyclopedia for phones — fight calendar, fighter database and disciplines in one place, instead of one app per sport.',
   cardSubtitle:
-    'Brand and product design for Kotic, a mobile app that tracks fighters, events and results across boxing, MMA, Muay Thai and grappling.',
+    'A cross-discipline combat sports calendar and encyclopedia: MMA, boxing, kickboxing, muay thai, bare-knuckle and grappling in one feed.',
   // Nothing to link to yet — neither a case page nor a shipped app.
   inDevelopment: true,
   role: 'Creator, Product Designer',

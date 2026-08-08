@@ -10,7 +10,7 @@ export const netok: Project = {
   subtitle:
     'Designed and built a desktop network diagnostics app that replaces a drawer full of single-purpose tools with one interface.',
   cardSubtitle:
-    'Brand and product design for Netok, a free desktop app that monitors your network connection. Built with Rust and Tauri.',
+    "Netok checks your connection, shows what's wrong, and helps you set up DNS or VPN, without the command line and networking manuals.",
   // No internal case page yet — the card goes straight to the live product.
   cardExternalLink: 'https://netok.app',
   role: 'Creator, Product Designer',

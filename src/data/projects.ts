@@ -1,6 +1,7 @@
 import { Project } from '@/types/project';
 import { netok } from './netok';
 import { kotic } from './kotic';
+import { fontscout } from './fontscout';
 import { cloud } from './cloud';
 import { hotroom } from './hotroom';
 import { formengine } from './formengine';
@@ -10,8 +11,8 @@ import { illustrations } from './illustrations';
 import { digital } from './digital';
 
 // Order drives the grids: the home page shows the first four, /portfolio shows
-// all of mainProjects in this order. netok and kotic sit last on purpose —
-// their case studies are still stubs, so they stay off the home page.
+// all of mainProjects in this order. netok, kotic and fontscout sit last on
+// purpose — their case studies are still stubs, so they stay off the home page.
 export const allProjects: Project[] = [
   cloud,
   hotroom,
@@ -22,6 +23,7 @@ export const allProjects: Project[] = [
   digital,
   netok,
   kotic,
+  fontscout,
 ];
 
 export const projectMap: Record<string, Project> = Object.fromEntries(
@@ -35,6 +37,7 @@ export const mainProjects = allProjects.filter(
 export {
   netok,
   kotic,
+  fontscout,
   cloud,
   hotroom,
   formengine,
